@@ -1,0 +1,1 @@
+{"5b01e888771f8040f70c874cb49a678b":{"statistic":{"failed":0,"broken":0,"skipped":0,"passed":1,"unknown":0,"total":1},"items":[{"uid":"ae781d2c571e1776","reportUrl":"https://tgaliya.github.io/allure-playwright-demo/6//#testresult/ae781d2c571e1776","status":"passed","time":{"start":1680763045442,"stop":1680763082533,"duration":37091}}]}}
