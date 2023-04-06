@@ -216,6 +216,7 @@ test('@ViaFlowTesting @Regression Via Flow Testing: Login, User Management & Adm
     {
         console.log("Error: Submitting Entity Details (Success) toaster message missing!");
     }
+    await page.waitForTimeout(2000);
     //Adminstration: Creating New Client
     await page.locator("a[href*='admin/client-admin/create']").click();
     await expect.soft(page).toHaveURL('https://qa-via.outamationlabs.com/via-ui/#/app/admin/client-admin/create');
