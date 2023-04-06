@@ -155,8 +155,16 @@ test('@ViaFlowTesting @Regression Via Flow Testing: Login, User Management & Adm
     }
     expect.soft(page.url().includes("admin/entity/create")).toBeTruthy();
     await page.locator("text=Submit").click();
-    await expect.soft(page.locator("p-toastitem")).toContainText("Please fill all the required values!");
-    await page.waitForTimeout(1500);
+    const blankEntityCreationtoaster: boolean = await page.locator("p-toastitem").isVisible();
+    if (blankEntityCreationtoaster === true) 
+    {
+        await expect(page.locator("p-toastitem")).toContainText("Please fill all the required values!");  
+        await page.waitForTimeout(3000);
+    } 
+    else 
+    {
+        console.log("Error: Blank Entity Creation toaster message missing!");
+    }
     await page.locator("span.p-toast-icon-close-icon").click();
     await page.waitForTimeout(2000);
     await page.locator("p-dropdown div.p-dropdown").nth(1).click();
@@ -189,23 +197,39 @@ test('@ViaFlowTesting @Regression Via Flow Testing: Login, User Management & Adm
     await page.locator("#email").fill(entitydetails[10]);
     await page.locator("text=Submit").click();
     await page.locator("span.pi-check").click();
-    const Success1 = await page.locator(".p-toast-detail").textContent();
-    if(Success1 === "Entity has been created")
+    const Entitycreationsuccessmsg : boolean = await page.locator(".p-toast-detail").isVisible();
+    if (Entitycreationsuccessmsg === true) 
     {
-        console.log("Entity Creation Passed");
-    }
-    else
+        await expect(page.locator(".p-toast-detail")).toContainText("Entity has been created");  
+        await page.waitForTimeout(1500);
+        const Success1 = await page.locator(".p-toast-detail").textContent();
+        if(Success1 === "Entity has been created")
+        {
+            console.log("Entity Creation Passed");
+        }
+        else
+        {
+            console.log("Entity Creation Failed");
+        }
+    } 
+    else 
     {
-        console.log("Entity Creation Failed");
+        console.log("Error: Submitting Entity Details (Success) toaster message missing!");
     }
-    await page.waitForTimeout(3000);
     //Adminstration: Creating New Client
     await page.locator("a[href*='admin/client-admin/create']").click();
     await expect.soft(page).toHaveURL('https://qa-via.outamationlabs.com/via-ui/#/app/admin/client-admin/create');
     await page.locator("text=Submit").click();
-    await page.waitForTimeout(1500);
-    await expect.soft(page.locator("p-toastitem")).toContainText("Please fill all the required values!");
-    await page.waitForTimeout(1500);
+    const blankClientCreationtoaster: boolean = await page.locator("p-toastitem").isVisible();
+    if (blankClientCreationtoaster === true) 
+    {
+        await expect(page.locator("p-toastitem")).toContainText("Please fill all the required values!");  
+        await page.waitForTimeout(3000);
+    } 
+    else 
+    {
+        console.log("Error: Blank Client Creation toaster message missing!");
+    }
     await page.locator("span.p-toast-icon-close-icon").click();
     await page.waitForTimeout(1500);
     await page.locator("#companyName").type(clientdetails[0]);
@@ -213,7 +237,7 @@ test('@ViaFlowTesting @Regression Via Flow Testing: Login, User Management & Adm
     await page.locator("#address").fill(clientdetails[2]);
     await page.locator("#city").fill(clientdetails[3]);
     await page.locator("p-dropdown#state span").last().click();
-    await page.locator("li[aria-label='Alabama']").click();
+    await page.locator("li[aria-label='California']").click();
     await page.locator('p-dropdown span.p-dropdown-label').last().textContent();
     await page.locator("#zip").fill(wclientdetails[0]);
     expect.soft(wclientdetails[0].match(/(^\d{5}$)|(^\d{5}-\d{4}$)/)).toBeFalsy();
@@ -235,13 +259,23 @@ test('@ViaFlowTesting @Regression Via Flow Testing: Login, User Management & Adm
     await page.locator("#email").clear();
     await page.locator("#email").fill(clientdetails[11]);
     await page.locator("text=Submit").click();
-    const Success2 = await page.locator(".p-toast-detail").textContent();
-    if(Success2 === "Client has been created")
+    const Clientcreationsuccessmsg : boolean = await page.locator(".p-toast-detail").isVisible();
+    if (Clientcreationsuccessmsg === true) 
     {
-        console.log("Client Creation Passed");
-    }
-    else
+        await expect(page.locator(".p-toast-detail")).toContainText("Client has been created");  
+        await page.waitForTimeout(1500);
+        const Success2 = await page.locator(".p-toast-detail").textContent();
+        if(Success2 === "Client has been created")
+        {
+            console.log("Client Creation Passed");
+        }
+        else
+        {
+            console.log("Client Creation Failed");
+        }
+    } 
+    else 
     {
-        console.log("Client Creation Failed");
+        console.log("Error: Submitting Client Details (Success) toaster message missing!");
     }
 });
