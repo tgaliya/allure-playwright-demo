@@ -1,0 +1,22 @@
+{
+  "name": "allure-playwright-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "allure:generate": "npx allure generate ./allure-results --clean",
+    "allure:open": "npx allure open ./allure-report",
+    "test": "npx playwright test",
+    "posttest": "npm run allure:generate"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.32.2",
+    "allure-playwright": "^2.1.0"
+  },
+  "dependencies": {
+    "allure-commandline": "^2.21.0"
+  }
+}
