@@ -1,0 +1,9 @@
+User Login Successfull
+Error: Blank User Information toaster message missing!
+
+User Information Submitted
+Error: Blank Privilege toaster message missing!
+Error: Adding new user (Success) toaster message missing!
+Privilege Set Up Successfull - User Creation - Completed
+Entity Creation Passed
+Client Creation Passed
