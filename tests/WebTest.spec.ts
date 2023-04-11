@@ -1,21 +1,10 @@
 import { test, expect } from '@playwright/test';
-test('@ViaFlowTesting @Regression Via Flow Testing: Login, User Management & Administration Module',async ({browser})=>
+test.beforeEach(async({page}) =>
 {
-    const context = await browser.newContext();
-    const page = await context.newPage();
+    //-------------------------------------------Login Module-------------------------------------------
     let username = "Via";
     let password = "Via@12345";
     let wpassword = "Via@123";
-    let userdetails: string[] = ['awilliams@gmail.com', 'Alex','Williams','S','010-771-8510',
-    'B.A', 'I.T'];
-    let wuserdetails: string[] = ["awilliams@gmail-com","+1 571-789-1001","4390","(567) 026-5681"];
-    let entitydetails: string[] = ['Cipher Technologies', '3410 Sant mariot Road','Chicago','Illinois',
-    '61607-7613','312-660-9190','+1','771-123-4560','+1','010-771-8510','awilliams@gmail.com'];
-    let wentitydetails: string[] = ["4390","+1 571-789-1001","(567) 026-5681","awilliams@gmail-com",];
-    let clientdetails: string[] = ['Cipher Technologies','CTPL','3410 Sant mariot Road','Birmingham',
-    'Alabama','61607-7613','312-660-9190','+1','771-123-4560','+1','010-771-8510','awilliams@gmail.com'];
-    let wclientdetails: string[] = ["4390","+1 571-789-1001","(567) 026-5681","awilliams@gmail-com",];
-    //Login Module
     await page.goto("https://qa-via.outamationlabs.com/via-ui");
     await page.locator("button[label='Login']").click();
     const blanklogininfotoaster: boolean = await page.locator("p-toastitem").isVisible();
@@ -60,18 +49,30 @@ test('@ViaFlowTesting @Regression Via Flow Testing: Login, User Management & Adm
     ]);
     if(page.url().includes("user-management/dashboard"))
     {
-        console.log("User Login Successfull");
+        console.log("User Login Successful");
     }
     else
     {   
         console.log("User Login Failed");
     }
-    //User Management: Creating New User
-    await page.locator('#undefined_header').first().click();
-    await page.locator("a[href*='app/user-management/create-user']").click();
+});
+let userdetails: string[] = ['awilliams@gmail.com', 'Alex','Williams','S','010-771-8510',
+'B.A', 'I.T'];
+let wuserdetails: string[] = ["awilliams@gmail-com","+1 571-789-1001","4390","(567) 026-5681"];
+let entitydetails: string[] = ['Cipher Technologies', '3410 Sant mariot Road','Chicago','Illinois',
+'61607-7613','312-660-9190','+1','771-123-4560','+1','010-771-8510','awilliams@gmail.com'];
+let wentitydetails: string[] = ["4390","+1 571-789-1001","(567) 026-5681","awilliams@gmail-com",];
+let clientdetails: string[] = ['Cipher Technologies','CTPL','3410 Sant mariot Road','Birmingham',
+'Alabama','61607-7613','312-660-9190','+1','771-123-4560','+1','010-771-8510','awilliams@gmail.com'];
+let wclientdetails: string[] = ["4390","+1 571-789-1001","(567) 026-5681","awilliams@gmail-com",];
+test('@ViaFlowTesting @Regression Via Flow Testing: Login, User Management & Administration Module',async ({page})=>
+{
+    //-------------------------------User Management: Creating New User---------------------------------
+    await page.locator("div[aria-label='User Management']").click(); //clicking on side menu bar of User Management
+    await page.locator("div[aria-label='Create User']").click(); //clicking on Create User button
     await page.waitForTimeout(1500);
     expect.soft(page.url().includes("via-ui/#/app/user-management/create-user")).toBeTruthy();
-    await page.locator("text=Permissions").click();
+    await page.locator("p-button[label='Save & Close']").click();
     const UserInfoSubmittoaster: boolean = await page.locator("p-toastitem").isVisible();
     if (UserInfoSubmittoaster === true) 
     {
@@ -81,6 +82,7 @@ test('@ViaFlowTesting @Regression Via Flow Testing: Login, User Management & Adm
     else 
     {
         console.log("Error: Blank User Information toaster message missing!");
+        await page.waitForTimeout(3000);
     }
     await page.locator("#email").fill(wuserdetails[0]);
     expect.soft(wuserdetails[0].match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)).toBeFalsy();
@@ -99,37 +101,15 @@ test('@ViaFlowTesting @Regression Via Flow Testing: Login, User Management & Adm
     await page.locator("#department").fill(userdetails[6]);
     await page.locator('p-dropdown span.p-dropdown-label').nth(1).click();
     await page.locator("li[aria-label='Florida']").click();
-    await page.locator('p-dropdown span.p-dropdown-label').last().click();
+    await page.locator('p-dropdown span.p-dropdown-label').nth(2).click();
     await page.locator("li[aria-label='Miami-Dade']").click();
     await page.locator("button span.pi-calendar").click();
-    await page.locator('xpath=//html/body/via-root/div/via-layout/span/div/via-user-management/via-user-layout/div/via-create-user/div/p-card/div/div/div[2]/div/div[13]/p-calendar/span/div/div/div/div[2]/table/tbody/tr[5]/td[2]/span').click();
+    await page.locator("td.p-datepicker-today.ng-star-inserted").click(); //selecting current date
     console.log(await page.locator("span.p-calendar .p-inputtext").textContent());
-    await page.locator("text=Permissions").click();
-    if(page.url().includes("privilege"))
-    {
-        console.log("User Information Submitted");
-    }
-    else
-    {
-        console.log("Failed to Submit User Information");
-    }
-    await page.locator("text=Save & Close").click();
-    const blankPrivilegetoaster: boolean = await page.locator("p-toastitem").isVisible();
-    if (blankPrivilegetoaster === true) 
-    {
-        await expect(page.locator("p-toastitem")).toContainText("Please fill all the required values!");  
-        await page.waitForTimeout(3000);
-    } 
-    else 
-    {
-        console.log("Error: Blank Privilege toaster message missing!");
-    }
     await page.locator("text=Read Only").click();
     expect.soft(page.locator("text=Read Only").isChecked).toBeTruthy();
     await page.locator(".p-dropdown").last().click();
     await page.locator("li[aria-label='None']").click();
-    const Privileges = await page.locator("via-privilege[class='ng-star-inserted']").textContent();
-    expect.soft(Privileges?.includes("Read Only") && ("None")).toBeTruthy();
     await page.locator("text=Save & Close").click();
     const PrivilegeInfoSubmittoaster: boolean = await page.locator("p-toastitem").isVisible();
     if (PrivilegeInfoSubmittoaster === true) 
@@ -140,10 +120,11 @@ test('@ViaFlowTesting @Regression Via Flow Testing: Login, User Management & Adm
     else 
     {
         console.log("Error: Adding new user (Success) toaster message missing!");
+        await page.waitForTimeout(3000);
     }
-    //Adminstration: Creating New Entity
-    await page.locator('#undefined_header').nth(1).click();
-    await page.locator("a[href*='/admin/entity/create']").click();
+    //-------------------------------Adminstration: Creating New Entity---------------------------------
+    await page.locator("div[aria-label='Administration']").click(); //clicking on side menu bar of Administration
+    await page.locator("div[aria-label='Add Entity']").click(); //clicking on Add Entity button
     await page.waitForTimeout(1500);
     if (page.url().includes("app/admin/entity/create")) 
     {
@@ -164,9 +145,8 @@ test('@ViaFlowTesting @Regression Via Flow Testing: Login, User Management & Adm
     else 
     {
         console.log("Error: Blank Entity Creation toaster message missing!");
+        await page.waitForTimeout(3000);
     }
-    await page.locator("span.p-toast-icon-close-icon").click();
-    await page.waitForTimeout(2000);
     await page.locator("p-dropdown div.p-dropdown").nth(1).click();
     await page.locator("li[aria-label='User']").click();
     await page.locator('p-dropdown span.p-dropdown-label').nth(1).textContent();
@@ -216,9 +196,9 @@ test('@ViaFlowTesting @Regression Via Flow Testing: Login, User Management & Adm
     {
         console.log("Error: Submitting Entity Details (Success) toaster message missing!");
     }
-    await page.waitForTimeout(2000);
-    //Adminstration: Creating New Client
-    await page.locator("a[href*='admin/client-admin/create']").click();
+    //-------------------------------Adminstration: Creating New Client---------------------------------
+    await page.locator("div[aria-label='Administration']").click(); //clicking on side menu bar of Administration
+    await page.locator("div[aria-label='Add Client']").click(); //clicking on Add Client button
     await expect.soft(page).toHaveURL('https://qa-via.outamationlabs.com/via-ui/#/app/admin/client-admin/create');
     await page.locator("text=Submit").click();
     const blankClientCreationtoaster: boolean = await page.locator("p-toastitem").isVisible();
@@ -230,9 +210,8 @@ test('@ViaFlowTesting @Regression Via Flow Testing: Login, User Management & Adm
     else 
     {
         console.log("Error: Blank Client Creation toaster message missing!");
+        await page.waitForTimeout(3000);
     }
-    await page.locator("span.p-toast-icon-close-icon").click();
-    await page.waitForTimeout(1500);
     await page.locator("#companyName").type(clientdetails[0]);
     await page.locator("#companyCode").type(clientdetails[1]);
     await page.locator("#address").fill(clientdetails[2]);
