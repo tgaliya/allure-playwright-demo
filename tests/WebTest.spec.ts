@@ -196,6 +196,7 @@ test('@ViaFlowTesting @Regression Via Flow Testing: Login, User Management & Adm
     {
         console.log("Error: Submitting Entity Details (Success) toaster message missing!");
     }
+    await page.waitForTimeout(3000);
     //-------------------------------Adminstration: Creating New Client---------------------------------
     await page.locator("div[aria-label='Administration']").click(); //clicking on side menu bar of Administration
     await page.locator("div[aria-label='Add Client']").click(); //clicking on Add Client button
