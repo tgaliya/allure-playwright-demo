@@ -1,0 +1,2 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Tue Apr 11 08:48:03 GMT 2023","Tue Apr 11 08:48:37 GMT 2023","33923","chromium","WebTest.spec.ts","","","","@ViaFlowTesting @Regression Via Flow Testing: Login, User Management & Administration Module",""
