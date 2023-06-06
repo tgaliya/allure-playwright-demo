@@ -19,13 +19,12 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npx playwright install
-    - run: npm test
+    - run: npm run VIA
   
     - uses: actions/upload-artifact@master
       with:
         name: allure-results
-        path: allure-results
-        retention-days: 20
+        path: allure-results 
         
     - name: Get Allure history
       uses: actions/checkout@v2
