@@ -28,11 +28,21 @@ jobs:
       - name: Run Playwright automation
         run: npm run VIA
 
-      - name: Send email on success
-        if: ${{ job.status == 'success' }}
-        env: 
-          SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
-          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+      - name: Send email on pass or fail
+        if: ${{ always() }}
         run: |
-          npm install nodemailer
-          node SendEmail.js
+          if [ ${{ job.status }} == 'success' ]; then
+            echo "Playwright automation script passed."
+          env: 
+            SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+            SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+            npm install nodemailer
+            node SendEmail.js
+          else
+            echo "Playwright automation script failed."
+            env: 
+              SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+              SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+              npm install nodemailer
+              node SendEmail.js
+          fi
