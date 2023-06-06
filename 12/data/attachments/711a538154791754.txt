@@ -1,0 +1,106 @@
+
+Login:
+Error: Blank Login toaster message missing!
+User Login Successful
+
+User Management: New User Creation
+Error: Blank User Information toaster message missing!
+
+Error: Adding new user (Success) toaster message missing!
+Privilege Set Up Successfull - User Creation - Completed
+
+Entity Management: New Entity Creation
+Entity Creation Passed
+
+Client Management: New Client Creation
+Client Creation Passed
+
+New Case Creation:
+User landed on create case page
+New Referral Number Generated is : 458243-4109
+Error: Blank Trustee info toaster message missing!
+Workflow Information Submitted
+Success, Case Creation Pass
+User redirected to cases page
+
+Case Search and Verifying details:
+Law Firm ID is : 458243-4109
+Case found on case search page
+Case Number Found on Search Page is : 458243-4109
+Success, Case Details Verification Pass
+
+Case Editing:
+Workflow Information Submitted
+Success, Case Edit Pass
+User redirected to cases page
+
+Case Search and Verifying details after editing the case:
+Law Firm ID is : 458243-4109
+Case found on case search page
+Case Number Found on Search Page is : 458243-4109
+Success, Case Details Verification Pass after editing the case
+
+Case Steps Flow are as below:
+
+Step 1 : Referral Received 
+Referral Received step completed
+
+Step 2 : Title Order 
+Title Requested step completed
+Title Received step completed
+Title Review step completed
+Title Order step completed
+
+Step 3 : FHA Letter 
+FHA Letter step completed
+
+Step 4 : Complaint 
+Prepare Complaint step completed
+Attorney Review And Approve Complaint step completed
+Revise The Complaint step completed
+Attorney Review And Approve Complaint step completed after Revise The Complaint
+Send Complaint For Client Approval step completed
+Received Approved Complaint From Client step completed
+Submit Complaint For Filling step completed
+First Legal Filed step completed
+Complaint step completed
+
+Step 5 : Service 
+Service Started step completed
+Service Completed step completed
+Answer Period Expiration step completed
+Service step completed
+
+Step 6 : Judgement 
+Request Judgement Figures step completed
+Receive Judgement Figures step completed
+Judgement Prepare step completed
+Attorney Review & Approve Judgement step completed
+Submit Judgement To Court step completed
+Judgement Entered step completed
+Judgement step completed
+
+Step 7 : Sale 
+Request Bidding Instruction step completed
+Receive Bidding Instruction step completed
+Sale Bid Confirmed step completed
+
+Step 7.1 : Bankruptcy Search 
+Request Bankruptcy Search step completed
+Receive Bankruptcy Search step completed
+Bankruptcy Search step completed
+
+Step 7.2 : Military Search 
+Request Military Search step completed
+Receive Military Search step completed
+Military Search step completed
+
+Step 7.3 : Sale Held 
+Sale Held step completed
+Sale step completed
+
+Case Processing Final Result : 
+Success, Case Steps Pass
+
+Logout:
+User Logout Successful
