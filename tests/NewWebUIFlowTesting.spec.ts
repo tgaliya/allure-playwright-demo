@@ -1,11 +1,7 @@
 import { test, expect } from '@playwright/test';
-export const AllTestResultLog:string[] = [];
 test.beforeEach(async({page}) =>
 {
     //-----------------------------------------Login Module---------------------------------------------
-    // let username = "Via";
-    // let password = "Via@12345";
-    // let wpassword = "Via@123";
     await page.goto("https://qa-via.outamationlabs.com/via-ui");
     await page.waitForTimeout(1500);
     console.log("\nLogin:");
@@ -21,14 +17,6 @@ test.beforeEach(async({page}) =>
     {
         console.log("Error: Blank Login toaster message missing!");
     }
-    // await page.locator("input[placeholder='Username']").type(username,{delay:100});
-    // await page.locator("input[placeholder='Password']").type(wpassword,{delay:100});
-    // expect.soft(wpassword.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)).toBeFalsy();
-    // await page.locator("input[placeholder='Password']").clear();
-    // await page.locator("input[placeholder='Password']").type(password,{delay:100});
-    // expect.soft(wpassword.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/));
-    // await page.locator("input[placeholder='Password']").press('Tab');
-    // await page.locator("button[label='Login']").click();
     await page.locator("button[label='Verify my account']").click();
     await page.waitForTimeout(1500);
     const blankotptoaster: boolean = await page.locator("p-toastitem").isVisible();
@@ -55,12 +43,10 @@ test.beforeEach(async({page}) =>
     if(page.url().includes("app/dashboard"))
     {
         console.log("User Login Successful");
-        AllTestResultLog.push('SrNo: 1', 'Module: Login', 'Status: Pass');
     }
     else
     {   
         console.log("User Login Failed");
-        AllTestResultLog.push('SrNo: 1', 'Module: Login', 'Status: Fail');
     }
 });
 let userdetails: string[] = ['albertjerry321@gmail.com', 'Albert','Jerry','k','281-890-0036',
