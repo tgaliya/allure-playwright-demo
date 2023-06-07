@@ -33,7 +33,7 @@ var mailOptions = {
           table 
           {
             font-family: arial, sans-serif;
-            width: 100%;
+            width: 50%;
             border-collapse: collapse;
           }
           td, th 
@@ -44,13 +44,14 @@ var mailOptions = {
           }
           th 
           {
-            text-align: left;
+            text-align: center;
             padding: 12px;
           }
         </style>
       </head>
       <body>
         <div>Hi All,<br><br>Here are the testing results of all the available modules of VIA URL (https://qa-via.outamationlabs.com/via-ui).</div>
+        <br>
         <table>
           <tr>
             <th>Sr No</th>
@@ -63,11 +64,10 @@ var mailOptions = {
             <td>Pass</td>
           </tr>
         </table>
-        <br><br>
+        <br>
         <div>Thanks,<br>Tushar</div>
       </body>
     </html>`,
-  text: 'The Playwright automation script passed successfully.' // Plain text body
 };
 
 transporter.sendMail(mailOptions, function (err, info) {
