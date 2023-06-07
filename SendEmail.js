@@ -26,14 +26,14 @@ var transporter = nodemailer.createTransport({
 var mailOptions = {
   from: process.env.EMAIL_USERNAME,
   to: 'tushar.galiya@outamation.com',
-  subject: 'Playwright Automation Result:' + formattedDate,
+  subject: 'Playwright Automation Result : ' + formattedDate,
   html: `<html>
       <head>
         <style>
           table 
           {
             font-family: arial, sans-serif;
-            width: 50%;
+            width: 40%;
             border-collapse: collapse;
           }
           td, th 
