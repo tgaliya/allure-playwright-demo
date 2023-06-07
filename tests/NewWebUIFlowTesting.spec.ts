@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+export const AllTestResultLog:string[] = [];
 test.beforeEach(async({page}) =>
 {
     //-----------------------------------------Login Module---------------------------------------------
@@ -54,10 +55,12 @@ test.beforeEach(async({page}) =>
     if(page.url().includes("app/dashboard"))
     {
         console.log("User Login Successful");
+        AllTestResultLog.push('SrNo: 1', 'Module: Login', 'Status: Pass');
     }
     else
     {   
         console.log("User Login Failed");
+        AllTestResultLog.push('SrNo: 1', 'Module: Login', 'Status: Fail');
     }
 });
 let userdetails: string[] = ['albertjerry321@gmail.com', 'Albert','Jerry','k','281-890-0036',
