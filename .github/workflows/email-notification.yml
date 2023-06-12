@@ -36,9 +36,9 @@ jobs:
           if [ ${{ job.status }} == 'success' ]; then
             echo "Playwright automation script passed."
             npm install nodemailer
-            node SendEmail.js
+            node SendMail.js
           else
             echo "Playwright automation script failed."
               npm install nodemailer
-              node SendEmail.js
+              node SendMail.js
           fi

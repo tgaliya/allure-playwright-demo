@@ -30,7 +30,7 @@ var mailOptions = {
   from: process.env.EMAIL_USERNAME,
   to: 'tushar.galiya@outamation.com',
   //subject: 'Playwright Automation Result',
-  subject: "Playwright Automation Result: " + formattedDate,
+  subject: "Web UI Playwright Automation Flow Result: " + formattedDate,
   html: `<html>
       <head>
         <style>
@@ -54,7 +54,7 @@ var mailOptions = {
         </style>
       </head>
       <body>
-        <div>Hi All,<br><br>Here are the testing results of all the available modules of Pauat URL (pauat.mstc.company).</div>
+        <div>Hi All,<br><br>Here are the testing results of all the available modules of VIA URL (https://qa-via.outamationlabs.com/via-ui).</div>
         <table>
           <tr>
             <th>Sr No</th>
