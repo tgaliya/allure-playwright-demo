@@ -1,8 +1,14 @@
 //var nodemailer = require("nodemailer");
 var nodemailer = require("./node_modules/nodemailer");
-var AllTestResultLog = require("./tests/NewWebUIFlowTesting.spec.ts");
+const AllTestResultLog = require('./testResults');
 
-async function sendEmail()
+var currentDate = new Date();
+var day = currentDate.getDate();
+var month = currentDate.getMonth() + 1;
+var year = currentDate.getFullYear();
+var formattedDate = day + '/' + month + '/' + year;
+
+function sendMail()
 {
 var transporter = nodemailer.createTransport({
   host: "smtp.office365.com",
@@ -24,7 +30,7 @@ var mailOptions = {
   from: process.env.EMAIL_USERNAME,
   to: 'tushar.galiya@outamation.com',
   //subject: 'Playwright Automation Result',
-  subject: "Playwright Automation Result: " + date,
+  subject: "Playwright Automation Result: " + formattedDate,
   html: `<html>
       <head>
         <style>
@@ -90,4 +96,4 @@ function getTestResults()
   return test;
 }
 
-sendEmail();
+sendMail();

@@ -1,4 +1,14 @@
 import { test, expect } from '@playwright/test';
+const {sendMail} = require('../SendMail');
+const { addTestResult } = require('../testResults');
+
+interface AllTestResultLog
+{
+    SrNo: string;
+    Module: string;
+    Status: string;
+}
+//const myList: AllTestResultLog[] = [];
 test.beforeEach(async({page}) =>
 {
     //-----------------------------------------Login Module---------------------------------------------
@@ -42,11 +52,25 @@ test.beforeEach(async({page}) =>
     ]);
     if(page.url().includes("app/dashboard"))
     {
+        const result: AllTestResultLog = {
+            SrNo: "1",
+            Module: "Login",
+            Status: "Pass"
+        }
         console.log("User Login Successful");
+        addTestResult(result);
+        //AllTestResultLog.push(result);
     }
     else
     {   
+        const result: AllTestResultLog = {
+            SrNo: "1",
+            Module: "Login",
+            Status: "Fail"
+        }
         console.log("User Login Failed");
+        addTestResult(result);
+        //AllTestResultLog.push(result);
     }
 });
 let userdetails: string[] = ['albertjerry321@gmail.com', 'Albert','Jerry','k','281-890-0036',
@@ -398,7 +422,7 @@ test('@UpdatedViaFlow VIA Flow Testing from Login till Logout', async({page})=>
         }
         await page.waitForTimeout(5000);
         console.log("\nCase Search and Verifying details:");
-        const CaseNumberDetail: any = await page.locator("#p-panel-3-content > div > div > div:nth-child(2) > span:nth-child(2)").textContent();
+        const CaseNumberDetail: any = await page.locator("#p-panel-2-content > div > div > div:nth-child(2) > span:nth-child(2)").textContent();
         console.log("Law Firm ID is : " + CaseNumberDetail);
         if(CaseNo.match(CaseNumberDetail))
         {
@@ -412,19 +436,19 @@ test('@UpdatedViaFlow VIA Flow Testing from Login till Logout', async({page})=>
         //-----------------------------------------Verify Case Details---------------------------------------
         const BorrowerName = "John Doe";
         const FullAddress = "859 South 12th St #104";
-        const Case_Number = await page.locator("#p-panel-3-content > div > div > div:nth-child(1) > span:nth-child(2)").textContent();
-        const Law_FirmID = await page.locator("#p-panel-3-content > div > div > div:nth-child(2) > span:nth-child(2)").textContent();
-        const Borrower_Name = await page.locator("#p-panel-3-content > div > div > div:nth-child(3) > span:nth-child(2)").textContent();
-        const Loan_Number = await page.locator("#p-panel-3-content > div > div > div:nth-child(4) > span:nth-child(2)").textContent();
-        const Investor_Type = await page.locator("#p-panel-3-content > div > div > div:nth-child(5) > span:nth-child(2)").textContent();
-        const Case_Type = await page.locator("#p-panel-3-content > div > div > div:nth-child(6) > span:nth-child(2)").textContent();
-        const Servicer_Name = await page.locator("#p-panel-3-content > div > div > div:nth-child(7) > span:nth-child(2)").textContent();
-        const Property_Address = await page.locator("#p-panel-3-content > div > div > div:nth-child(8) > span:nth-child(2)").textContent();
-        const Property_City = await page.locator("#p-panel-3-content > div > div > div:nth-child(9) > span:nth-child(2)").textContent();
-        const Property_State = await page.locator("#p-panel-3-content > div > div > div:nth-child(10) > span:nth-child(2)").textContent();
-        const Property_Zip = await page.locator("#p-panel-3-content > div > div > div:nth-child(11) > span:nth-child(2)").textContent();
-        const Case_Status = await page.locator("#p-panel-3-content > div > div > div:nth-child(12) > span:nth-child(2)").textContent();
-        const Workflow_Name = await page.locator("#p-panel-3-content > div > div > div:nth-child(13) > span:nth-child(2)").textContent();
+        const Case_Number = await page.locator("#p-panel-2-content > div > div > div:nth-child(1) > span:nth-child(2)").textContent();
+        const Law_FirmID = await page.locator("#p-panel-2-content > div > div > div:nth-child(2) > span:nth-child(2)").textContent();
+        const Borrower_Name = await page.locator("#p-panel-2-content > div > div > div:nth-child(3) > span:nth-child(2)").textContent();
+        const Loan_Number = await page.locator("#p-panel-2-content > div > div > div:nth-child(4) > span:nth-child(2)").textContent();
+        const Investor_Type = await page.locator("#p-panel-2-content > div > div > div:nth-child(5) > span:nth-child(2)").textContent();
+        const Case_Type = await page.locator("#p-panel-2-content > div > div > div:nth-child(6) > span:nth-child(2)").textContent();
+        const Servicer_Name = await page.locator("#p-panel-2-content > div > div > div:nth-child(7) > span:nth-child(2)").textContent();
+        const Property_Address = await page.locator("#p-panel-2-content > div > div > div:nth-child(8) > span:nth-child(2)").textContent();
+        const Property_City = await page.locator("#p-panel-2-content > div > div > div:nth-child(9) > span:nth-child(2)").textContent();
+        const Property_State = await page.locator("#p-panel-2-content > div > div > div:nth-child(10) > span:nth-child(2)").textContent();
+        const Property_Zip = await page.locator("#p-panel-2-content > div > div > div:nth-child(11) > span:nth-child(2)").textContent();
+        const Case_Status = await page.locator("#p-panel-2-content > div > div > div:nth-child(12) > span:nth-child(2)").textContent();
+        const Workflow_Name = await page.locator("#p-panel-2-content > div > div > div:nth-child(13) > span:nth-child(2)").textContent();
         if(Case_Number?.match("23-4527") && Law_FirmID?.match(CaseNumberDetail) && 
         Borrower_Name?.match(BorrowerName) && Loan_Number?.match("79845612") && Investor_Type?.match("FHLMC") && 
         Case_Type?.match("Foreclosure") && Servicer_Name?.match("ABC Bank") && Property_Address?.match(FullAddress) 
@@ -469,8 +493,8 @@ test('@UpdatedViaFlow VIA Flow Testing from Login till Logout', async({page})=>
             await page.waitForTimeout(3000);
         }
         //await page.pause();
-        await page.locator("div[role='radio']").nth(1).click();
-        expect.soft(await page.locator("div[role='radio']").nth(0).isChecked());
+        await page.locator("div[role='radio']").nth(2).click();
+        expect.soft(await page.locator("div[role='radio']").nth(2).isChecked());
         await Promise.all([
             page.waitForURL("https://qa-via.outamationlabs.com/via-ui/#/app/case-management/cases"),
             page.locator("p-button[label='Submit']").click()
@@ -507,7 +531,7 @@ test('@UpdatedViaFlow VIA Flow Testing from Login till Logout', async({page})=>
         }
         await page.waitForTimeout(5000);
         console.log("\nCase Search and Verifying details after editing the case:");
-        const CaseNumberDetail1: any = await page.locator("#p-panel-5-content > div > div > div:nth-child(2) > span:nth-child(2)").textContent();
+        const CaseNumberDetail1: any = await page.locator("#p-panel-3-content > div > div > div:nth-child(2) > span:nth-child(2)").textContent();
         console.log("Law Firm ID is : " + CaseNumberDetail1);
         if(CaseNo.match(CaseNumberDetail1))
         {
@@ -518,19 +542,19 @@ test('@UpdatedViaFlow VIA Flow Testing from Login till Logout', async({page})=>
         {
             console.log("Failed to found case on case search page");
         }
-        const Case_Number1 = await page.locator("#p-panel-5-content > div > div > div:nth-child(1) > span:nth-child(2)").textContent();
-        const Law_FirmID1 = await page.locator("#p-panel-5-content > div > div > div:nth-child(2) > span:nth-child(2)").textContent();
-        const Borrower_Name1 = await page.locator("#p-panel-5-content > div > div > div:nth-child(3) > span:nth-child(2)").textContent();
-        const Loan_Number1 = await page.locator("#p-panel-5-content > div > div > div:nth-child(4) > span:nth-child(2)").textContent();
-        const Investor_Type1 = await page.locator("#p-panel-5-content > div > div > div:nth-child(5) > span:nth-child(2)").textContent();
-        const Case_Type1 = await page.locator("#p-panel-5-content > div > div > div:nth-child(6) > span:nth-child(2)").textContent();
-        const Servicer_Name1 = await page.locator("#p-panel-5-content > div > div > div:nth-child(7) > span:nth-child(2)").textContent();
-        const Property_Address1 = await page.locator("#p-panel-5-content > div > div > div:nth-child(8) > span:nth-child(2)").textContent();
-        const Property_City1 = await page.locator("#p-panel-5-content > div > div > div:nth-child(9) > span:nth-child(2)").textContent();
-        const Property_State1 = await page.locator("#p-panel-5-content > div > div > div:nth-child(10) > span:nth-child(2)").textContent();
-        const Property_Zip1 = await page.locator("#p-panel-5-content > div > div > div:nth-child(11) > span:nth-child(2)").textContent();
-        const Case_Status1 = await page.locator("#p-panel-5-content > div > div > div:nth-child(12) > span:nth-child(2)").textContent();
-        const Workflow_Name1 = await page.locator("#p-panel-5-content > div > div > div:nth-child(13) > span:nth-child(2)").textContent();
+        const Case_Number1 = await page.locator("#p-panel-3-content > div > div > div:nth-child(1) > span:nth-child(2)").textContent();
+        const Law_FirmID1 = await page.locator("#p-panel-3-content > div > div > div:nth-child(2) > span:nth-child(2)").textContent();
+        const Borrower_Name1 = await page.locator("#p-panel-3-content > div > div > div:nth-child(3) > span:nth-child(2)").textContent();
+        const Loan_Number1 = await page.locator("#p-panel-3-content > div > div > div:nth-child(4) > span:nth-child(2)").textContent();
+        const Investor_Type1 = await page.locator("#p-panel-3-content > div > div > div:nth-child(5) > span:nth-child(2)").textContent();
+        const Case_Type1 = await page.locator("#p-panel-3-content > div > div > div:nth-child(6) > span:nth-child(2)").textContent();
+        const Servicer_Name1 = await page.locator("#p-panel-3-content > div > div > div:nth-child(7) > span:nth-child(2)").textContent();
+        const Property_Address1 = await page.locator("#p-panel-3-content > div > div > div:nth-child(8) > span:nth-child(2)").textContent();
+        const Property_City1 = await page.locator("#p-panel-3-content > div > div > div:nth-child(9) > span:nth-child(2)").textContent();
+        const Property_State1 = await page.locator("#p-panel-3-content > div > div > div:nth-child(10) > span:nth-child(2)").textContent();
+        const Property_Zip1 = await page.locator("#p-panel-3-content > div > div > div:nth-child(11) > span:nth-child(2)").textContent();
+        const Case_Status1 = await page.locator("#p-panel-3-content > div > div > div:nth-child(12) > span:nth-child(2)").textContent();
+        const Workflow_Name1 = await page.locator("#p-panel-3-content > div > div > div:nth-child(13) > span:nth-child(2)").textContent();
         if(Case_Number1?.match("23-4527") && Law_FirmID1?.match(CaseNumberDetail1) && 
         Borrower_Name1?.match(BorrowerName) && Loan_Number1?.match("79845612") && Investor_Type1?.match("FHLMC") && 
         Case_Type1?.match("Foreclosure") && Servicer_Name1?.match("ABC Bank") && Property_Address1?.match(FullAddress) 
@@ -1754,3 +1778,5 @@ test('@UpdatedViaFlow VIA Flow Testing from Login till Logout', async({page})=>
             await page.waitForTimeout(3000);
         }
 });
+
+sendMail;
