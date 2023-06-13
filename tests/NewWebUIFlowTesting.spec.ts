@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import AllTestResultLog from '../testResults';
 const {sendMail} = require('../SendMail');
 const { addTestResult } = require('../testResults');
 
