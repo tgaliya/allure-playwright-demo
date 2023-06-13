@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import AllTestResultLog from '../testResults';
-const {sendMail} = require('../SendMail');
+//const {sendMail} = require('../SendMail');
 const { addTestResult } = require('../testResults');
 
 interface AllTestResultLog
@@ -60,6 +60,7 @@ test.beforeEach(async({page}) =>
         }
         console.log("User Login Successful");
         addTestResult(result);
+        //console.log(AllTestResultLog);
         //AllTestResultLog.push(result);
     }
     else
@@ -71,6 +72,7 @@ test.beforeEach(async({page}) =>
         }
         console.log("User Login Failed");
         addTestResult(result);
+        //console.log(AllTestResultLog);
         //AllTestResultLog.push(result);
     }
 });
@@ -1780,4 +1782,4 @@ test('@UpdatedViaFlow VIA Flow Testing from Login till Logout', async({page})=>
         }
 });
 
-sendMail;
+//sendMail;
