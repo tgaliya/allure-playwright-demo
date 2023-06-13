@@ -61,7 +61,7 @@ var mailOptions = {
             <th>Module</th>
             <th>Status</th>
           </tr>
-          ${getTestResults()}
+          ${getTestResults(AllTestResultLog)}
         </table>
         <br><br>
         <div>Thanks,<br>Tushar</div>
@@ -83,7 +83,7 @@ transporter.sendMail(mailOptions, function (err, info)
 });
 }
 
-function getTestResults() 
+function getTestResults(AllTestResultLog) 
 {
   let test = "";
   //AllTestResultLog.sort((a, b) => a.SrNo - b.SrNo);
