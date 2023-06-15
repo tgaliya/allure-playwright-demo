@@ -1,7 +1,6 @@
 import { test, expect } from '@playwright/test';
 import AllTestResultLog from '../testResults';
 const {sendMail} = require('../SendMail');
-const { addTestResult } = require('../testResults');
 
 interface AllTestResultLog
 {
@@ -59,7 +58,6 @@ test('@playwrightTest VIA Flow Testing from Login till Logout', async({page})=>
         }
         console.log("User Login Successful");
         AllTestResultLog.push(result);
-        //addTestResult(result);
     }
     else
     {   
@@ -70,7 +68,6 @@ test('@playwrightTest VIA Flow Testing from Login till Logout', async({page})=>
         }
         console.log("User Login Failed");
         AllTestResultLog.push(result);
-        //addTestResult(result);
     }
     sendMail();
 });
