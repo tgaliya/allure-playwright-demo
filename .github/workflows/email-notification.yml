@@ -26,19 +26,9 @@ jobs:
         run: npx playwright install
 
       - name: Run Playwright automation
-        run: npm run VIATest
-
-      - name: Send email on pass or fail
         env:
           EMAIL_USERNAME: ${{ secrets.SMTP_USERNAME }}
           EMAIL_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
         run: |
-          if [ ${{ job.status }} == 'success' ]; then
-            echo "Playwright automation script passed."
-            npm install nodemailer
-            node SendMail.js
-          else
-            echo "Playwright automation script failed."
-            npm install nodemailer
-            node SendMail.js
-          fi
+          npm install nodemailer
+          npm run VIATest
