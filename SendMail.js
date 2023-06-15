@@ -8,7 +8,7 @@ var month = currentDate.getMonth() + 1;
 var year = currentDate.getFullYear();
 var formattedDate = day + '/' + month + '/' + year;
 
-export function sendMail()
+module.exports.sendMail = function ()
 {
 var transporter = nodemailer.createTransport({
   host: "smtp.office365.com",
@@ -25,7 +25,6 @@ var transporter = nodemailer.createTransport({
   logger: true,
   debug: true
 });
-
 var mailOptions = {
   from: 'donotreply@authparency.com',
   to: 'tushar.galiya@outamation.com',
