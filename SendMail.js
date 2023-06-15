@@ -1,3 +1,4 @@
+require('./node_modules/dotenv').config();
 var nodemailer = require("./node_modules/nodemailer");
 const AllTestResultLog = require('./testResults');
 

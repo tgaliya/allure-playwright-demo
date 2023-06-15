@@ -31,4 +31,5 @@ jobs:
           EMAIL_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
         run: |
           npm install nodemailer
+          npm install dotenv
           npm run VIATest
