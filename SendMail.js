@@ -8,7 +8,7 @@ var month = currentDate.getMonth() + 1;
 var year = currentDate.getFullYear();
 var formattedDate = day + '/' + month + '/' + year;
 
-function sendMail()
+export function sendMail()
 {
 var transporter = nodemailer.createTransport({
   host: "smtp.office365.com",
@@ -19,15 +19,15 @@ var transporter = nodemailer.createTransport({
     rejectUnauthorized: false
   },
   auth: {
-    user: process.env.EMAIL_USERNAME,
-    pass: process.env.EMAIL_PASSWORD,
+    user: "donotreply@authparency.com",
+    pass: "Pramukh@1",
   },
   logger: true,
   debug: true
 });
 
 var mailOptions = {
-  from: process.env.EMAIL_USERNAME,
+  from: 'donotreply@authparency.com',
   to: 'tushar.galiya@outamation.com',
   //subject: 'Playwright Automation Result',
   subject: "Web UI Playwright Automation Flow Result: " + formattedDate,
@@ -87,13 +87,13 @@ function getTestResults(AllTestResultLog)
 {
   let test = "";
   //AllTestResultLog.sort((a, b) => a.SrNo - b.SrNo);
+  //console.log(AllTestResultLog);
   AllTestResultLog.sort();
   for (const result of AllTestResultLog) 
   {
     const rowColor = result.Status === "Fail" ? "style='color: red'" : "";
     test += `<tr ${rowColor}><td>${result.SrNo}</td><td>${result.Module}</td><td>${result.Status}</td></tr>`;
   }
+  //console.log(test);
   return test;
 }
-
-sendMail();

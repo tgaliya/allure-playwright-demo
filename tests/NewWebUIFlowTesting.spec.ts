@@ -53,25 +53,27 @@ test.beforeEach(async({page}) =>
     ]);
     if(page.url().includes("app/dashboard"))
     {
-        const result: AllTestResultLog = {
+        const result = {
             SrNo: "1",
             Module: "Login",
             Status: "Pass"
         }
         console.log("User Login Successful");
-        addTestResult(result);
+        AllTestResultLog.push(result);
+        //addTestResult(result);
         //console.log(AllTestResultLog);
         //AllTestResultLog.push(result);
     }
     else
     {   
-        const result: AllTestResultLog = {
+        const result = {
             SrNo: "1",
             Module: "Login",
             Status: "Fail"
         }
         console.log("User Login Failed");
-        addTestResult(result);
+        AllTestResultLog.push(result);
+        //addTestResult(result);
         //console.log(AllTestResultLog);
         //AllTestResultLog.push(result);
     }

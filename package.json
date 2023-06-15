@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "VIA": "npx playwright test --grep @UpdatedViaFlow",
+    "VIATest": "npx playwright test --grep @playwrightTest",
     "allure:generate": "npx allure generate ./allure-results --clean",
     "allure:open": "npx allure open ./allure-report",
     "test": "npx playwright test",
