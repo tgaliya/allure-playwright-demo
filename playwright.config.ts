@@ -44,17 +44,17 @@ export default defineConfig({
   //},
 
   use: {
-    browserName: 'chromium',
-    headless: false,
-    screenshot: 'only-on-failure',
+    // browserName: 'chromium',
+    // headless: false,
+    // screenshot: 'only-on-failure',
     //trace: 'retain-on-failure',
     trace: 'on',
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
     actionTimeout: 0,
-    viewport: null,
-    launchOptions: {
-      args: ['--start-maximized'],
-    },
+    // viewport: null,
+    // launchOptions: {
+    //   args: ['--start-maximized'],
+    // },
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://127.0.0.1:3000',
 

@@ -1762,6 +1762,6 @@ test('@UpdatedViaFlow VIA Flow Testing from Login till Logout', async ({ page })
 });
 
 test.afterAll(async () => {
-  console.log('AFTER TESTS');
+  console.log('\nAFTER TESTS');
   await sendMail();
 });
