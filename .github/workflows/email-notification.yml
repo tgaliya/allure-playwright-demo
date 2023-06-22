@@ -2,9 +2,9 @@ name: Playwright Automation Email Notification
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [main, master]
   pull_request:
-    branches: [ main, master ]
+    branches: [main, master]
 
 jobs:
   run_playwright:
@@ -32,4 +32,4 @@ jobs:
         run: |
           npm install nodemailer
           npm install dotenv
-          npm run VIATest
+          npm run VIA

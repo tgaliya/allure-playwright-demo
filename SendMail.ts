@@ -20,6 +20,8 @@ function sendMail(): Promise<string> {
     auth: {
       user: process.env.EMAIL_USERNAME,
       pass: process.env.EMAIL_PASSWORD,
+      //user: 'donotreply@authparency.com',
+      //pass: 'Pramukh@1',
     },
     logger: true,
     debug: true,
@@ -27,6 +29,7 @@ function sendMail(): Promise<string> {
 
   var mailOptions = {
     from: process.env.EMAIL_USERNAME,
+    //from: 'donotreply@authparency.com',
     to: 'tushar.galiya@outamation.com',
     subject: 'Web UI Playwright Automation Flow Result: ' + formattedDate,
     html: `<html>
@@ -35,7 +38,7 @@ function sendMail(): Promise<string> {
             table 
             {
               font-family: arial, sans-serif;
-              width: 40%;
+              width: 45%;
               border-collapse: collapse;
             }
             td, th 
