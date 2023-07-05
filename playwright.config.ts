@@ -47,8 +47,9 @@ export default defineConfig({
     // browserName: 'chromium',
     // headless: false,
     // screenshot: 'only-on-failure',
+
     //trace: 'retain-on-failure',
-    trace: 'on',
+    //---trace: 'on',
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
     actionTimeout: 0,
     // viewport: null,

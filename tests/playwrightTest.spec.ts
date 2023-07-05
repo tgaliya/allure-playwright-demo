@@ -1,11 +1,12 @@
 import { test, expect } from '@playwright/test';
 import AllTestResultLog from '../testResults';
-//import { sendMail } from '../SendMail';
+import { sendMail } from '../SendMail';
 
 interface AllTestResultLog {
   SrNo: string;
   Module: string;
   Status: string;
+  Path: string;
 }
 
 test('@playwrightTest VIA Flow Testing from Login till Logout', async ({ page }) => {
@@ -93,6 +94,7 @@ test.only('@playwrightLoginTest VIA Flow Testing from Login till Logout', async 
       SrNo: '1',
       Module: 'Login',
       Status: 'Pass',
+      Path: 'Login',
     };
     console.log('User Login Successful');
     AllTestResultLog.push(result);
@@ -101,6 +103,7 @@ test.only('@playwrightLoginTest VIA Flow Testing from Login till Logout', async 
       SrNo: '1',
       Module: 'Login',
       Status: 'Fail',
+      Path: 'Login',
     };
     console.log('User Login Failed');
     AllTestResultLog.push(result);
@@ -153,7 +156,7 @@ test.only('@playwrightLoginTest VIA Flow Testing from Login till Logout', async 
   // }
 });
 
-// test.afterAll(async () => {
-//   console.log('AFTER TESTS');
-//   await sendMail();
-// });
+test.afterAll(async () => {
+  console.log('\nAFTER TESTS');
+  await sendMail();
+});

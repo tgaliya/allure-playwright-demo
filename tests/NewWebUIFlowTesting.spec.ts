@@ -6,8 +6,8 @@ interface AllTestResultLog {
   SrNo: string;
   Module: string;
   Status: string;
+  Path: string;
 }
-//const myList: AllTestResultLog[] = [];
 test.beforeEach(async ({ page }) => {
   //-----------------------------------------Login Module---------------------------------------------
   await page.goto('https://qa-via.outamationlabs.com/via-ui');
@@ -38,6 +38,7 @@ test.beforeEach(async ({ page }) => {
       SrNo: '1',
       Module: 'Login',
       Status: 'Pass',
+      Path: 'Login',
     };
     console.log('User Login Successful');
     AllTestResultLog.push(result);
@@ -46,6 +47,7 @@ test.beforeEach(async ({ page }) => {
       SrNo: '1',
       Module: 'Login',
       Status: 'Fail',
+      Path: 'Login',
     };
     console.log('User Login Failed');
     AllTestResultLog.push(result);
@@ -168,6 +170,7 @@ test('@UpdatedViaFlow VIA Flow Testing from Login till Logout', async ({ page })
       SrNo: '2',
       Module: 'User Management',
       Status: 'Pass',
+      Path: 'Administration > User Management',
     };
     AllTestResultLog.push(result);
   } else {
@@ -176,6 +179,7 @@ test('@UpdatedViaFlow VIA Flow Testing from Login till Logout', async ({ page })
       SrNo: '2',
       Module: 'User Management',
       Status: 'Fail',
+      Path: 'Administration > User Management',
     };
     AllTestResultLog.push(result);
   }
@@ -236,6 +240,7 @@ test('@UpdatedViaFlow VIA Flow Testing from Login till Logout', async ({ page })
         SrNo: '3',
         Module: 'Entity Management',
         Status: 'Pass',
+        Path: 'Administration > Entity Management',
       };
       AllTestResultLog.push(result);
       await page.waitForTimeout(3000);
@@ -245,6 +250,7 @@ test('@UpdatedViaFlow VIA Flow Testing from Login till Logout', async ({ page })
         SrNo: '3',
         Module: 'Entity Management',
         Status: 'Fail',
+        Path: 'Administration > Entity Management',
       };
       AllTestResultLog.push(result);
       await page.waitForTimeout(3000);
@@ -313,6 +319,7 @@ test('@UpdatedViaFlow VIA Flow Testing from Login till Logout', async ({ page })
         SrNo: '4',
         Module: 'Client Management',
         Status: 'Pass',
+        Path: 'Administration > Client Management',
       };
       AllTestResultLog.push(result);
     } else {
@@ -321,6 +328,7 @@ test('@UpdatedViaFlow VIA Flow Testing from Login till Logout', async ({ page })
         SrNo: '4',
         Module: 'Client Management',
         Status: 'Fail',
+        Path: 'Administration > Client Management',
       };
       AllTestResultLog.push(result);
     }
@@ -381,7 +389,11 @@ test('@UpdatedViaFlow VIA Flow Testing from Login till Logout', async ({ page })
   //---------------------------Case Management : Choose Document Module-------------------------------
   await page.waitForTimeout(3000);
   await Promise.all([
-    page.waitForURL('https://qa-via.outamationlabs.com/via-ui/#/app/case-management/cases'),
+    page.waitForURL(
+      'https://qa-via.outamationlabs.com/via-ui/#/app/case-management/cases/' +
+        CaseNo +
+        '/case-steps'
+    ),
     page.locator("p-button[label='Next']").click(),
   ]);
   if (page.url().includes('app/case-management/cases')) {
@@ -392,6 +404,7 @@ test('@UpdatedViaFlow VIA Flow Testing from Login till Logout', async ({ page })
       SrNo: '5',
       Module: 'New Case Creation',
       Status: 'Pass',
+      Path: 'Case Management > New Case',
     };
     AllTestResultLog.push(result);
     await page.waitForTimeout(3000);
@@ -403,6 +416,7 @@ test('@UpdatedViaFlow VIA Flow Testing from Login till Logout', async ({ page })
       SrNo: '5',
       Module: 'New Case Creation',
       Status: 'Fail',
+      Path: 'Case Management > New Case',
     };
     AllTestResultLog.push(result);
     await page.waitForTimeout(3000);
@@ -535,13 +549,14 @@ test('@UpdatedViaFlow VIA Flow Testing from Login till Logout', async ({ page })
     Property_State?.match('AZ') &&
     Property_Zip?.match('86326') &&
     Case_Status?.match('In-Progress') &&
-    Workflow_Name?.match('Latest-Custom-FC-AZ-NonJudicial-Delay')
+    Workflow_Name?.match('New-Custom-FC-AZ-NonJudicial-Delay')
   ) {
     console.log('Success, Case Details Verification Pass');
     const result = {
       SrNo: '6',
       Module: 'Case Details Verifying',
       Status: 'Pass',
+      Path: 'Case Management > Cases > Case Steps',
     };
     AllTestResultLog.push(result);
     await page.waitForTimeout(3000);
@@ -551,6 +566,7 @@ test('@UpdatedViaFlow VIA Flow Testing from Login till Logout', async ({ page })
       SrNo: '6',
       Module: 'Case Details Verifying',
       Status: 'Fail',
+      Path: 'Case Management > Cases > Case Steps',
     };
     AllTestResultLog.push(result);
     await page.waitForTimeout(3000);
@@ -594,10 +610,14 @@ test('@UpdatedViaFlow VIA Flow Testing from Login till Logout', async ({ page })
     await page.waitForTimeout(3000);
   }
   //await page.pause();
-  await page.locator("div[role='radio']").nth(4).click();
-  expect.soft(await page.locator("div[role='radio']").nth(4).isChecked());
+  await page.locator("div[role='radio']").nth(6).click();
+  expect.soft(await page.locator("div[role='radio']").nth(6).isChecked());
   await Promise.all([
-    page.waitForURL('https://qa-via.outamationlabs.com/via-ui/#/app/case-management/cases'),
+    page.waitForURL(
+      'https://qa-via.outamationlabs.com/via-ui/#/app/case-management/cases/' +
+        CaseNo +
+        '/case-steps'
+    ),
     page.locator("p-button[label='Submit']").click(),
   ]);
   if (page.url().includes('app/case-management/cases')) {
@@ -608,6 +628,7 @@ test('@UpdatedViaFlow VIA Flow Testing from Login till Logout', async ({ page })
       SrNo: '7',
       Module: 'Case Editing',
       Status: 'Pass',
+      Path: 'Case Management > Case form',
     };
     AllTestResultLog.push(result);
     await page.waitForTimeout(3000);
@@ -619,6 +640,7 @@ test('@UpdatedViaFlow VIA Flow Testing from Login till Logout', async ({ page })
       SrNo: '7',
       Module: 'Case Editing',
       Status: 'Fail',
+      Path: 'Case Management > Case form',
     };
     AllTestResultLog.push(result);
     await page.waitForTimeout(3000);
@@ -707,6 +729,7 @@ test('@UpdatedViaFlow VIA Flow Testing from Login till Logout', async ({ page })
       SrNo: '8',
       Module: 'Case Details Verifying After Case Editing',
       Status: 'Pass',
+      Path: 'Case Management > Cases',
     };
     AllTestResultLog.push(result);
     await page.waitForTimeout(3000);
@@ -716,6 +739,7 @@ test('@UpdatedViaFlow VIA Flow Testing from Login till Logout', async ({ page })
       SrNo: '8',
       Module: 'Case Details Verifying After Case Editing',
       Status: 'Fail',
+      Path: 'Case Management > Cases',
     };
     AllTestResultLog.push(result);
     await page.waitForTimeout(3000);
@@ -822,6 +846,10 @@ test('@UpdatedViaFlow VIA Flow Testing from Login till Logout', async ({ page })
   }
   await page.locator('text= Title Review ').first().click();
   const Step_TitleReview = await page.locator('.p-dialog-title').textContent();
+  await page.waitForTimeout(1000);
+  await page.locator("p-dropdown[id='TitleSearchType']").click();
+  await page.waitForTimeout(1000);
+  await page.locator("li[aria-label='Full Search']").click();
   await page.waitForTimeout(1000);
   await page.locator("p-dropdown[id='StepStatus']").click();
   await page.waitForTimeout(1000);
@@ -1736,6 +1764,7 @@ test('@UpdatedViaFlow VIA Flow Testing from Login till Logout', async ({ page })
       SrNo: '9',
       Module: 'Case Steps Processing',
       Status: 'Pass',
+      Path: 'Case Management > Cases > Case Steps',
     };
     AllTestResultLog.push(result);
   } else {
@@ -1744,8 +1773,84 @@ test('@UpdatedViaFlow VIA Flow Testing from Login till Logout', async ({ page })
       SrNo: '9',
       Module: 'Case Steps Processing',
       Status: 'Fail',
+      Path: 'Case Management > Cases > Case Steps',
     };
     AllTestResultLog.push(result);
+  }
+  // Case Details Verifying after Case Processing is completed
+  const Case_Number2 = await page
+    .locator('#p-panel-3-content > div > div > div:nth-child(1) > span:nth-child(2)')
+    .textContent();
+  const Law_FirmID2 = await page
+    .locator('#p-panel-3-content > div > div > div:nth-child(2) > span:nth-child(2)')
+    .textContent();
+  const Borrower_Name2 = await page
+    .locator('#p-panel-3-content > div > div > div:nth-child(3) > span:nth-child(2)')
+    .textContent();
+  const Loan_Number2 = await page
+    .locator('#p-panel-3-content > div > div > div:nth-child(4) > span:nth-child(2)')
+    .textContent();
+  const Investor_Type2 = await page
+    .locator('#p-panel-3-content > div > div > div:nth-child(5) > span:nth-child(2)')
+    .textContent();
+  const Case_Type2 = await page
+    .locator('#p-panel-3-content > div > div > div:nth-child(6) > span:nth-child(2)')
+    .textContent();
+  const Servicer_Name2 = await page
+    .locator('#p-panel-3-content > div > div > div:nth-child(7) > span:nth-child(2)')
+    .textContent();
+  const Property_Address2 = await page
+    .locator('#p-panel-3-content > div > div > div:nth-child(8) > span:nth-child(2)')
+    .textContent();
+  const Property_City2 = await page
+    .locator('#p-panel-3-content > div > div > div:nth-child(9) > span:nth-child(2)')
+    .textContent();
+  const Property_State2 = await page
+    .locator('#p-panel-3-content > div > div > div:nth-child(10) > span:nth-child(2)')
+    .textContent();
+  const Property_Zip2 = await page
+    .locator('#p-panel-3-content > div > div > div:nth-child(11) > span:nth-child(2)')
+    .textContent();
+  const Case_Status2 = await page
+    .locator('#p-panel-3-content > div > div > div:nth-child(12) > span:nth-child(2)')
+    .textContent();
+  const Workflow_Name2 = await page
+    .locator('#p-panel-3-content > div > div > div:nth-child(13) > span:nth-child(2)')
+    .textContent();
+  if (
+    Case_Number2?.match('23-4527') &&
+    Law_FirmID2?.match(CaseNumberDetail1) &&
+    Borrower_Name2?.match(BorrowerName) &&
+    Loan_Number2?.match('79845612') &&
+    Investor_Type2?.match('FHLMC') &&
+    Case_Type2?.match('Foreclosure') &&
+    Servicer_Name2?.match('ABC Bank') &&
+    Property_Address2?.match(FullAddress) &&
+    Property_City2?.match('Cottonwood') &&
+    Property_State2?.match('AZ') &&
+    Property_Zip2?.match('86326') &&
+    Case_Status2?.match('Completed') &&
+    Workflow_Name2?.match('Foreclosure-AZ-FHA')
+  ) {
+    console.log('Success, Case Details Verification Pass After Case Steps are Processed');
+    const result = {
+      SrNo: '10',
+      Module: 'Case Details Verifying After Case Steps Processed',
+      Status: 'Pass',
+      Path: 'Case Management > Cases > Case Steps',
+    };
+    AllTestResultLog.push(result);
+    await page.waitForTimeout(3000);
+  } else {
+    console.log('Failure, Case Details Verification Unsuccessful After Case Steps are Processed');
+    const result = {
+      SrNo: '10',
+      Module: 'Case Details Verifying After Case Steps Processed',
+      Status: 'Fail',
+      Path: 'Case Management > Cases',
+    };
+    AllTestResultLog.push(result);
+    await page.waitForTimeout(3000);
   }
   // console.log('\nLogout:');
   // await Promise.all([
@@ -1760,7 +1865,6 @@ test('@UpdatedViaFlow VIA Flow Testing from Login till Logout', async ({ page })
   //   await page.waitForTimeout(3000);
   // }
 });
-
 test.afterAll(async () => {
   console.log('\nAFTER TESTS');
   await sendMail();

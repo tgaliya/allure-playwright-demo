@@ -22,6 +22,7 @@
   "dependencies": {
     "allure-commandline": "^2.21.0",
     "dotenv": "^16.1.4",
-    "nodemailer": "^6.9.3"
+    "nodemailer": "^6.9.3",
+    "smtp-connection": "^4.0.2"
   }
 }

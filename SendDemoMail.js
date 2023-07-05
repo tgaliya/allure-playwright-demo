@@ -18,15 +18,18 @@ var transporter = nodemailer.createTransport({
     rejectUnauthorized: false
   },
   auth: {
-    user: process.env.EMAIL_USERNAME,
-    pass: process.env.EMAIL_PASSWORD,
+    // user: process.env.EMAIL_USERNAME,
+    // pass: process.env.EMAIL_PASSWORD,
+    user: "donotreply@outamation.com",
+    pass: "Pramukh@100",
   },
   logger: true,
   debug: true
 });
 
 var mailOptions = {
-    from: process.env.EMAIL_USERNAME,
+    //from: process.env.EMAIL_USERNAME,
+    from: 'donotreply@outamation.com',
     to: 'tushar.galiya@outamation.com',
     //subject: 'Playwright Automation Result',
     subject: "Web UI Playwright Automation Flow Result: " + formattedDate,
