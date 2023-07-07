@@ -236,7 +236,7 @@ test('@UpdatedViaFlow VIA Flow Testing from Login till Logout', async ({ page })
     const Success1 = await page.locator('.p-toast-detail').textContent();
     await expect.soft(page.locator('.p-toast-detail')).toContainText('Entity has been created');
     //await page.waitForTimeout(1500);
-    if (Success1 === 'Tenant has been created') {
+    if (Success1 === 'Entity has been created') {
       console.log('Tenant Creation Passed');
       const result = {
         SrNo: '3',
