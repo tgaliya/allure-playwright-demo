@@ -36,6 +36,7 @@ function sendMail(): Promise<string> {
     //from: 'donotreply@authparency.com',
     //from: 'donotreply@outamation.com',
     to: 'tushar.galiya@outamation.com',
+    cc: 'santosh.satalkar@outamation.com',
     //cc: 'santosh.satalkar@outamation.com, chris.simpkins@a360inc.com',
     //subject: 'Web UI Playwright Automation Flow Result: ' + formattedDate,
     subject: 'Web UI Playwright Automation Flow Result: ',
