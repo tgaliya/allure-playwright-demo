@@ -610,8 +610,8 @@ test('@UpdatedViaFlow VIA Flow Testing from Login till Logout', async ({ page })
     await page.waitForTimeout(3000);
   }
   //await page.pause();
-  await page.locator("div[role='radio']").nth(6).click();
-  expect.soft(await page.locator("div[role='radio']").nth(6).isChecked());
+  await page.locator("div[role='radio']").nth(5).click();
+  expect.soft(await page.locator("div[role='radio']").nth(5).isChecked());
   await Promise.all([
     page.waitForURL(
       'https://qa-via.outamationlabs.com/via-ui/#/app/case-management/cases/' +
