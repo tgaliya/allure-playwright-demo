@@ -162,9 +162,9 @@ test('@UpdatedViaFlow VIA Flow Testing from Login till Logout', async ({ page })
   }
   //-------------------------------Adminstration: Creating New Entity---------------------------------
   await page.locator("div[aria-label='Administration']").click(); //clicking on side menu bar of Administration
-  await page.locator("div[aria-label='Entity Management']").click(); //selecting Entity Management from side menu bar
+  await page.locator("div[aria-label='User Management']").click(); //selecting Entity Management from side menu bar
   await page.waitForTimeout(1500);
-  if (page.url().includes('app/admin/entity-management/entities')) {
+  if (page.url().includes('app/admin/user-management/users')) {
     console.log('Privilege Set Up Successfull - User Creation - Completed');
     const result = {
       SrNo: '2',
@@ -183,9 +183,11 @@ test('@UpdatedViaFlow VIA Flow Testing from Login till Logout', async ({ page })
     };
     AllTestResultLog.push(result);
   }
-  console.log('\nEntity Management: New Entity Creation');
-  await page.locator("button[label='Add Entity']").click(); //clicking on Add Entity button
-  expect.soft(page.url().includes('app/admin/entity-management/entity-info')).toBeTruthy();
+  console.log('\nTenant Management: New Tenant Creation');
+  await page.locator("div[aria-label='Administration']").click(); //clicking on side menu bar of Administration
+  await page.locator("div[aria-label='Tenant Management']").click(); //selecting Entity Management from side menu bar
+  await page.locator("button[label='Add Tenant']").click(); //clicking on Add Entity button
+  expect.soft(page.url().includes('app/admin/tenant-management/tenant-info')).toBeTruthy();
   await page.locator('text=Save & Close').click();
   const blankEntityCreationtoaster: boolean = await page.locator('p-toastitem').isVisible();
   if (blankEntityCreationtoaster === true) {
@@ -194,7 +196,7 @@ test('@UpdatedViaFlow VIA Flow Testing from Login till Logout', async ({ page })
       .toContainText('Please fill all the required values!');
     await page.waitForTimeout(3000);
   } else {
-    console.log('Error: Blank Entity Creation toaster message missing!');
+    console.log('Error: Blank Tenant Creation toaster message missing!');
     await page.waitForTimeout(3000);
   }
   await page.locator('p-dropdown div.p-dropdown').nth(1).click();
@@ -234,29 +236,29 @@ test('@UpdatedViaFlow VIA Flow Testing from Login till Logout', async ({ page })
     const Success1 = await page.locator('.p-toast-detail').textContent();
     await expect.soft(page.locator('.p-toast-detail')).toContainText('Entity has been created');
     //await page.waitForTimeout(1500);
-    if (Success1 === 'Entity has been created') {
-      console.log('Entity Creation Passed');
+    if (Success1 === 'Tenant has been created') {
+      console.log('Tenant Creation Passed');
       const result = {
         SrNo: '3',
-        Module: 'Entity Management',
+        Module: 'Tenant Management',
         Status: 'Pass',
-        Path: 'Administration > Entity Management',
+        Path: 'Administration > Tenant Management',
       };
       AllTestResultLog.push(result);
       await page.waitForTimeout(3000);
     } else {
-      console.log('Entity Creation Failed');
+      console.log('Tenant Creation Failed');
       const result = {
         SrNo: '3',
-        Module: 'Entity Management',
+        Module: 'Tenant Management',
         Status: 'Fail',
-        Path: 'Administration > Entity Management',
+        Path: 'Administration > Tenant Management',
       };
       AllTestResultLog.push(result);
       await page.waitForTimeout(3000);
     }
   } else {
-    console.log('Error: Submitting Entity Details (Success) toaster message missing!');
+    console.log('Error: Submitting Tenant Details (Success) toaster message missing!');
     await page.waitForTimeout(3000);
   }
   //-------------------------------Adminstration: Creating New Client---------------------------------
@@ -549,7 +551,7 @@ test('@UpdatedViaFlow VIA Flow Testing from Login till Logout', async ({ page })
     Property_State?.match('AZ') &&
     Property_Zip?.match('86326') &&
     Case_Status?.match('In-Progress') &&
-    Workflow_Name?.match('Latest-Custom-FC-AZ-NonJudicial-Delay')
+    Workflow_Name?.match('New-Custom-FC-AZ-NonJudicial-Delay')
   ) {
     console.log('Success, Case Details Verification Pass');
     const result = {
