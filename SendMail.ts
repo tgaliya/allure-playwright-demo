@@ -20,10 +20,10 @@ function sendMail(): Promise<string> {
     auth: {
       // user: process.env.EMAIL_USERNAME,
       // pass: process.env.EMAIL_PASSWORD,
-      user: 'donotreply@authparency.com',
-      pass: 'Pramukh@1',
-      // user: 'donotreply@outamation.com',
-      // pass: 'Pramukh@100',
+      // user: 'donotreply@authparency.com',
+      // pass: 'Pramukh@1',
+      user: 'donotreply@outamation.com',
+      pass: 'Pramukh@100',
       // user: 'tushar.galiya@outamation.com',
       // pass: 'Pramukh@1',
     },
@@ -33,8 +33,8 @@ function sendMail(): Promise<string> {
 
   var mailOptions = {
     //from: process.env.EMAIL_USERNAME,
-    from: 'donotreply@authparency.com',
-    //from: 'donotreply@outamation.com',
+    //from: 'donotreply@authparency.com',
+    from: 'donotreply@outamation.com',
     to: 'tushar.galiya@outamation.com',
     //cc: 'chris.simpkins@a360inc.com',
     //cc: 'santosh.satalkar@outamation.com, chris.simpkins@a360inc.com',

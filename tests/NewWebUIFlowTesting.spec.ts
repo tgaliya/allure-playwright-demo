@@ -551,7 +551,7 @@ test('@UpdatedViaFlow VIA Flow Testing from Login till Logout', async ({ page })
     Property_State?.match('AZ') &&
     Property_Zip?.match('86326') &&
     Case_Status?.match('In-Progress') &&
-    Workflow_Name?.match('New-Custom-FC-AZ-NonJudicial-Delay')
+    Workflow_Name?.match('Custom-FC-AZ-NonJudicial-Delay')
   ) {
     console.log('Success, Case Details Verification Pass');
     const result = {
